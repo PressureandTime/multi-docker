@@ -7,10 +7,10 @@ before_install:
 script:
   - docker run -e CI=true pressureandtime/react-test npm test
 after_success:
-  -docker build  -t pressureandtime/multi-client ./client
-  -docker build  -t pressureandtime/multi-nginx ./nginx
-  -docker build  -t pressureandtime/multi-server ./server
-  -docker build  -t pressureandtime/multi-worker ./worker
+  - docker build  -t pressureandtime/multi-client ./client
+  - docker build  -t pressureandtime/multi-nginx ./nginx
+  - docker build  -t pressureandtime/multi-server ./server
+  - docker build  -t pressureandtime/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
