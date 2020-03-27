@@ -1,0 +1,36 @@
+{
+	"AWSEBDockerrunVersion": 2,
+	"containerDefinitions": [
+		{
+			"name": "client",
+			"image": "pressureandtime/multi-client",
+			"hostname": "client",
+			"essential": false
+		},
+		{
+			"name": "server",
+			"image": "pressureandtime/multi-server",
+			"hostname": "api",
+			"essential": false
+		},
+		{
+			"name": "worker",
+			"image": "pressureandtime/multi-worker",
+			"hostname": "worker",
+			"essential": false
+        },
+        {
+            "name":"nginx",
+            "image":"pressureandtime/multi-nginx",
+            "hostname": "nginx",
+            "essential":true,
+            "portMappings": [
+                {
+                    "hostPort":80,
+                    "containerPort":80
+                }
+            ],
+            "links": ["client", "server"]
+        }
+	]
+}
